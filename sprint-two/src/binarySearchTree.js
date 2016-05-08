@@ -4,6 +4,7 @@ var BinarySearchTree = function(value){
   tree.value = value;
   tree.left = null;
   tree.right = null;
+  
   tree.insert = function(insertVal) {
     //base case
     //if the value we are adding is less then the tree we are in and there is nothing to the left
@@ -28,44 +29,49 @@ var BinarySearchTree = function(value){
 
 
 tree.contains = function(containsVal) {
-  var state = false;
-  //base case
-  console.log('containsVal: ', containsVal);
-  console.log('tree.value: ', tree.value);
+  // base case
   if (containsVal === tree.value) {
-    console.log('inside if statement')
-    state = true;
-    console.log('redefined state to true: ', state);
-    return;
+    return true;
   }
-
+  //if target is less than current nodes val, then look left
   else if(containsVal < tree.value) {
-      console.log('Tree.left', tree.left);
+    //if left has no branch, return false
     if(tree.left === null) {
-      state = false;
+      return false;
+    //otherwise, recurse on this branch
     } else {
-      tree.left.contains(containsVal);
+      return tree.left.contains(containsVal);
     }
-  } else if (containsVal > tree.value) {
-      // console.log('Tree.right', tree.right);
-      // console.log('containsVal ', containsVal)
-      // console.log('tree.value', tree.value)
-      console.log('should be true: ', tree.right === null);
+  }
+  //if target is less than current nodes val, then look right
+  else if (containsVal > tree.value) {
+    //if right has no branch, return false
     if(tree.right === null) {
-      state = false;
+      return false;
+    //otherwise, recurse on this branch
     } else {
-      console.log('running recursion')
-      tree.right.contains(containsVal);
+      return tree.right.contains(containsVal);
     }
   } 
-console.log('STATE at the end, before return: ', state);
-  return state;
-
 };
+
+
+
 
 tree.depthFirstLog = function(callback) {
+  //just callback on whatever node I am at
+  callback(tree.value);
+  //if there is a left brach, recurse left
+  if (tree.left !== null) {
+    return tree.left.depthFirstLog(callback);
+  }
+  //if there is a right branch, recurse right
+  if (tree.right !== null) {
+    return tree.right.depthFirstLog(callback)
+  }
 
 };
+
 
 return tree;
 

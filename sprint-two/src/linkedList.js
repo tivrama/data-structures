@@ -1,50 +1,68 @@
 var LinkedList = function(){
   var list = {};
-  // create an index to increment
-  // list.index = 0;
+
   list.head = null;
   list.tail = null;
 
   list.addToTail = function(value) {
-    // check if there's nothing in list yet (no tail defined)
-    if (list.tail === null) {
-    // example: we want to add the value 4
-      // if so, create a new object at the key 'tail' (tail: {value: 4})
-      list.tail = {'value': value};
+    //Needed help on this point.  Still not sure why a var has t be created and I can't just use Node(value) in each of the if statements.  Is it because that would create a new new node each time?
+    var tempTail = Node(value);
+    //If the head is null, then it becomes both a head and the tail (only one object)
+    if (list.head === null) {
+      list.head = tempTail;
     }
+    //if the tail is defined, then it's next is changed from null to the new tail.  It's title as tail will be reassigned in the next step
+    if (list.tail !== null) {
+      list.tail.next = tempTail;
+    }
+    //either way, the new node becomes the tail
+    list.tail = tempTail;
 
-    // if it's the second item (head still hasn't been defined)
-    else if (list.head === null) {
-      // example: list has head: {value: 4} and we want to add the value 5
-      list.head = list.tail;
-      // update the tail to the new value passed in
-      list.tail = {'value': value};
-    }
-
-    // if it's the third or later item
-    else {
-      // example: we're adding 6
-      // the thing currently at tail ({value: 5}), reassign somewhere new (at the key '6'):
-      // create a key-value pair on the list object. The value will be an object that holds the tail's value, the key is the passed in parameter.
-      list[value] = {'value': list.tail.value};
-      // update the tail to the new value passed in
-      list.tail = {'value': value};
-    }
-  }
+  };
+//---------------------------------------------
 
 
   list.removeHead = function(){
-    // save the current head to a variable
-    // delete 
-    // delete the head
-    // return the saved variable
+    //make a var that holds the head and can be returned after head is removed
+    var removedHead = list.head;
+    //go to head.next and save as the new head.  
+    list.head = list.head.next
+    //return head
+    //got to return the head's value to pass the tests
+    return removedHead.value;
+
   };
 
+//---------------------------------------------
+
   list.contains = function(target){
+    //make a val set to a boolean to return
+    var checker = false;
+    //make a recursive function that will look for the target
+    var recurseList = function(node) {
+      //base case: find the target and return true
+      if (node.value === target) {
+        checker = true;
+        return;
+      }
+      //end recursion, if not found, just return
+      if (node.next === null) {
+        return;
+      }
+      //start recursion
+      return recurseList(node.next)
+    };
+    //call recursive function.
+    recurseList(list.head)
+    return checker
   };
+
+
 
   return list;
 };
+
+//---------------------------------------------
 
 var Node = function(value){
   var node = {};
@@ -54,6 +72,7 @@ var Node = function(value){
 
   return node;
 };
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
