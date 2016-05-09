@@ -22,3 +22,8 @@ Queue.prototype.dequeue = function() {
 };
 
 
+// var myQueue = new Queue();
+// myQueue.enqueue('hello');
+// myQueue.enqueue('world');
+
+// console.log(myQueue.dequeue())

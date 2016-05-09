@@ -3,19 +3,22 @@ var Stack = function() {
   // but try not not reference your old code in writing the new style.
 
   // make a new stack
-  var giraffe = {};
+  var obj = {};
   // extend with methods
-  _.extend(giraffe, stackMethods);
-  // console.log('giraffe: ', giraffe);
+  obj.index = 0;
+  obj.size = stackMethods.size
+  obj.pop = stackMethods.pop
+  obj.push = stackMethods.push
+  // console.log('obj: ', obj);
   // console.log('methods: ', Stack.stackMethods);
   // return the object we've built
-  return giraffe;
+  return obj;
 };
 
 stackMethods = {};
 
 // create an index to access in our methods
-stackMethods.index = 0;
+// stackMethods.index = 0;
 
 // 1. Check size
 stackMethods.size = function(){
@@ -32,9 +35,13 @@ stackMethods.push = function(value){
 stackMethods.pop = function(){
   // 1. decrement the index, 2. return the last indexed item
   // this.index = this.index - 1;
-  // console.log(this.size());
   if( this.size()) {
     return this[--this.index];
   }
 };
 
+// var myStack = Stack();
+// myStack.push('hello');
+// myStack.push('world');
+
+// console.log(myStack.pop())

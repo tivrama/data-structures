@@ -4,7 +4,6 @@ var Stack = function() {
   this.index = 0;
 };
 
-// Stack.prototype.index = 0;
 
 Stack.prototype.size = function() {
   return this.index;
@@ -21,3 +20,8 @@ Stack.prototype.pop = function() {
 };
 
 
+// var myStack = new Stack();
+
+// myStack.push('hello');
+// myStack.push('world');
+// console.log(myStack.pop());

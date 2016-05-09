@@ -1,16 +1,20 @@
 var Queue = function(){
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
-  var myStack = {};
-  _.extend(myStack, queueMethods);
-  return myStack;
+  var obj = {};
+  // _.extend(obj, queueMethods);
+  obj.frontIndex = 0;
+  obj.endIndex = 0;
+  obj.size = queueMethods.size
+  obj.enqueue = queueMethods.enqueue
+  obj.dequeue = queueMethods.dequeue
+
+
+  return obj;
 };
 
 queueMethods = {};
 
-queueMethods.endIndex = 0;
-
-queueMethods.frontIndex = 0;
 
 queueMethods.size = function() {
   return this.endIndex - this.frontIndex;
@@ -26,3 +30,8 @@ if(this.size() > 0) {
   }
 }
 
+// var myQueue = Queue();
+// myQueue.enqueue('hello');
+// myQueue.enqueue('world');
+
+// console.log(myQueue.dequeue())

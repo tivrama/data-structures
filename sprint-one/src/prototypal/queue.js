@@ -1,15 +1,16 @@
 var Queue = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
-  var myStack = Object.create(queueMethods);
-  return myStack;
+  var obj = Object.create(queueMethods);
+
+  obj.endIndex = 0;
+  obj.frontIndex = 0;
+
+  return obj;
 };
 
 var queueMethods = {};
 
-queueMethods.endIndex = 0;
-
-queueMethods.frontIndex = 0;
 
 queueMethods.size = function() {
   return this.endIndex - this.frontIndex;
@@ -26,3 +27,8 @@ queueMethods.dequeue = function() {
 }
 
 
+// var myQueue = Queue();
+// myQueue.enqueue('hello');
+// myQueue.enqueue('world');
+
+// console.log(myQueue.dequeue())
